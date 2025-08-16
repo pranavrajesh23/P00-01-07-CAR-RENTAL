@@ -1,5 +1,24 @@
 #include<iostream>
+#include<fstream>
 using namespace std;
+
+string database="database.csv";
+fstream fout;
+
+void saveToDatabase(const string& username, const string& password)
+{
+    fout.open(database, ios::app);
+    if (fout.is_open())
+    {
+        fout << username << "," << password << "\n";
+        fout.close();
+        cout << "User credentials saved successfully!" << endl;
+    }
+    else
+    {
+        cout << "Error opening database file!" << endl;
+    }
+}
 
 void registeredUser()
 {
@@ -22,7 +41,7 @@ void registeredUser()
         cout<<"Enter password: ";
         cin >> password;
         cout<<"\nRegistration successful!\n";
-        //saveToDatabase(username, password);
+        saveToDatabase(username, password);
         cout<<"\nYou can now login with your credentials.\n";
     }
     //login();
