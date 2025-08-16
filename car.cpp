@@ -3,21 +3,53 @@
 using namespace std;
 
 string database="database.csv";
-fstream fout;
+fstream fout(database, ios::in | ios::out | ios::app);
+
+void login()
+{
+    cout<<"\n----------------------------\n";
+    cout<<"LOGIN PROCESS\n";
+    cout<<"----------------------------\n";
+    string username, password;
+    cout<<"Enter username: ";
+    cin >> username;    
+    cout<<"Enter password: ";
+    cin >> password;
+        string line;
+        bool found = false;
+        while (getline(fout, line))
+        {
+            size_t pos = line.find(",");
+            string dbUsername = line.substr(0, pos);
+            string dbPassword = line.substr(pos + 1);
+            // cout<<dbUsername;
+            // cout<<dbPassword;
+            if (dbUsername == username && dbPassword == password)
+            {
+                found = true;
+                break;
+            }
+        }
+        fout.close();
+        
+        if (found)
+        {
+            cout << "\nLogin successful!" << endl;
+            cout << "\nWelcome, " << username << "!" << endl;
+            // rentalFunction();
+        }
+        else
+        {
+            cout << "\nInvalid username or password." << endl;
+            // forgetPassword();
+        }
+}
 
 void saveToDatabase(const string& username, const string& password)
 {
-    fout.open(database, ios::app);
-    if (fout.is_open())
-    {
         fout << username << "," << password << "\n";
         fout.close();
         cout << "User credentials saved successfully!" << endl;
-    }
-    else
-    {
-        cout << "Error opening database file!" << endl;
-    }
 }
 
 void registeredUser()
@@ -34,7 +66,7 @@ void registeredUser()
     }
     else
     {
-        cout<<"\nNew uses in the system!\n";
+        cout<<"\nNew user in the system!\n";
         cout<<"\nPlease register first.\n";
         cout<<"Enter username: ";
         cin >> username;    
@@ -44,7 +76,7 @@ void registeredUser()
         saveToDatabase(username, password);
         cout<<"\nYou can now login with your credentials.\n";
     }
-    //login();
+    login();
 }
 
 void adminApplication()
