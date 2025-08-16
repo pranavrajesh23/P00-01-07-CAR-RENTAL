@@ -28,6 +28,40 @@ void registeredUser()
     //login();
 }
 
+void adminApplication()
+{
+    cout<<"\n----------------------------\n";
+    cout<<"ADMIN APPLICATION PROCESS\n";
+    cout<<"----------------------------\n";
+    cout<<"\nWelcome to the admin application!\n";
+    cout<<"\nHere you can manage the car rental system.\n";
+    cout<<"\nChoose any functionality you want to implement.\n";
+    int choice;
+    while(true)
+    {
+        cout<<"1. Add new car to the system\n"; 
+        cout<<"2. Answer customer queries\n";
+        cout<<"3. Logout from admin panel\n";
+        cout<<"\nEnter your choice: \n";
+        cin >> choice;
+        if(choice == 1)
+        {
+            cout<<"\nAdding new car to the system...\n";
+            cout<<"\nNew car added successfully!\n";
+        }
+        else if(choice == 2)
+        {
+            cout<<"\nAnswering customer queries...\n";
+            cout<<"\nAll customer queries answered successfully!\n";
+        }
+        else{
+            break;
+        }
+    }
+    cout<<"\nLogging out from admin application...\n";
+    cout<<"\nThank you for using the admin application!\n";
+}
+
 void admin()
 {
     cout<<"\n----------------------------\n";
@@ -48,7 +82,7 @@ void admin()
             if (username == "admin" && password == "admin123") 
             {
                 cout << "\nAdmin login successful!" << endl;
-                //adminApplication();                              
+                adminApplication();                              
                 break; 
             } 
             else 
