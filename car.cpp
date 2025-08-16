@@ -4,6 +4,55 @@ using namespace std;
 
 string database="database.csv";
 fstream fout(database, ios::in | ios::out | ios::app);
+void login();
+
+void forgetPassword()
+{
+    cout<<"\n----------------------------\n";
+    cout<<"FORGET PASSWORD PROCESS\n";
+    cout<<"----------------------------\n";
+    cout<<"\nDid you forget your password? (yes/no): \n";
+    string choice;
+    cin >> choice;
+    if (choice == "yes")
+    {
+        cout<<"\nPlease contact the admin to reset your password.\n";
+        cout<<"\nRequesting a password change.\n";
+        cout<<"\nPlease enter your username to reset your password.\n";
+        string username;
+        cout<<"Enter username: ";
+        cin >> username;
+        fout.open(database, ios::in|ios::app|ios::out);
+
+        string line;
+        bool found = false;
+        while (getline(fout, line))
+        {
+            size_t pos = line.find(",");
+            string dbUsername = line.substr(0, pos);
+            if (dbUsername == username)
+            {
+                found = true;
+                string newPassword;
+                cout << "\nUsername found. Please enter your new password: ";
+                cin >> newPassword;
+                // line.replace(pos+1,newPassword);
+                 // Move to the beginning of the file
+                // line.replace(pos + 1, line.length() - pos - 1, newPassword);
+                fout<<username << "," << newPassword << "\n";
+                fout.seekp(0, ios::beg);
+                cout << "\nPassword reset successful!" << endl;
+                break;
+            }
+        }
+    }
+    else
+    {
+        cout<<"\nTry to remember the password.\nTry again.\n";
+    }
+    fout.close();
+    login();
+}
 
 void login()
 {
@@ -15,6 +64,7 @@ void login()
     cin >> username;    
     cout<<"Enter password: ";
     cin >> password;
+    fout.open(database, ios::in);
         string line;
         bool found = false;
         while (getline(fout, line))
@@ -41,7 +91,7 @@ void login()
         else
         {
             cout << "\nInvalid username or password." << endl;
-            // forgetPassword();
+            forgetPassword();
         }
 }
 
