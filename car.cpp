@@ -1,6 +1,33 @@
 #include<iostream>
 using namespace std;
 
+void registeredUser()
+{
+    cout<<"\n----------------------------\n";
+    cout<<"REGISTERED USER PROCESS\n";
+    cout<<"----------------------------\n";
+    string username, password,check;
+    cout<<"Registered User check? (yes/no): \n";
+    cin >> check;
+    if (check == "yes")
+    {
+        cout<<"\nRedirecting to login page...\n";
+    }
+    else
+    {
+        cout<<"\nNew uses in the system!\n";
+        cout<<"\nPlease register first.\n";
+        cout<<"Enter username: ";
+        cin >> username;    
+        cout<<"Enter password: ";
+        cin >> password;
+        cout<<"\nRegistration successful!\n";
+        //saveToDatabase(username, password);
+        cout<<"\nYou can now login with your credentials.\n";
+    }
+    //login();
+}
+
 void admin()
 {
     cout<<"\n----------------------------\n";
@@ -33,7 +60,7 @@ void admin()
     else
     {
         cout << "Exiting admin check." << endl;
-        // registeredUser();
+        registeredUser();
     }
     
 }                                                                                   
