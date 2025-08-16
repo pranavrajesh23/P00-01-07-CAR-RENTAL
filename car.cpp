@@ -5,6 +5,17 @@ using namespace std;
 string database="database.csv";
 fstream fout(database, ios::in | ios::out | ios::app);
 void login();
+void rentalFunction();
+
+void rentalFunction()
+{
+    cout<<"\n----------------------------\n";
+    cout<<"RENTAL FUNCTION PROCESS\n";  
+    cout<<"----------------------------\n";
+    cout<<"\nWelcome to the car rental system!\n";
+    cout<<"\nHere you can rent a car for your needs.\n";    
+    cout<<"\nMake payment and get the car.\n";
+}
 
 void forgetPassword()
 {
@@ -86,7 +97,7 @@ void login()
         {
             cout << "\nLogin successful!" << endl;
             cout << "\nWelcome, " << username << "!" << endl;
-            // rentalFunction();
+            rentalFunction();
         }
         else
         {
